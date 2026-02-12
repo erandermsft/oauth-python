@@ -57,7 +57,7 @@ User signs in (auth code flow)
 
 | Component | Responsibility |
 |-----------|---------------|
-| **EasyAuth** (Azure App Service Auth) | Token validation, `/.well-known/oauth-protected-resource` metadata document — no custom code needed |
+| **EasyAuth** (Azure App Service Auth) | Token validation, `/.well-known/oauth-protected-resource` metadata document — no custom code needed. See [Configure authentication for MCP servers on Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-mcp) for setup details. |
 | **Entra ID app registration** (MCP server) | Exposes `user_impersonation` scope, has API permissions for downstream services, pre-authorizes Agent Platform's client ID |
 | **OboTokenService** (your code in the MCP server) | Extracts bearer token from `ToolInvocationContext.Transport` headers, creates `OnBehalfOfCredential` for downstream API calls |
 | **Admin consent** (one-time setup) | Agent Platform's app gets admin consent for each MCP server's scope. Each MCP server's app gets admin consent for downstream APIs. Eliminates all user consent prompts at runtime. |

@@ -11,7 +11,7 @@ A Python script that simulates an **Agent Platform → MCP Server → Downstream
 The script walks through the full token chain:
 
 1. **User login** — Starts a local HTTP server, opens an auth code flow URL. The user signs in and the script captures the authorization code, exchanging it for a token scoped to the Agent Platform's own app.
-2. **Scope discovery** — Fetches `/.well-known/oauth-protected-resource` from the MCP server to discover the required scope. Falls back to `MCP_SCOPE` from `.env` if set.
+2. **Scope discovery** — Fetches `/.well-known/oauth-protected-resource` from the MCP server to discover the required scope (served automatically by [Azure App Service authentication for MCP](https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-mcp)). Falls back to `MCP_SCOPE` from `.env` if set.
 3. **OBO exchange** — Exchanges the user's token for one scoped to the MCP server using the OBO grant.
 4. **MCP tool calls** — Calls the MCP server with the OBO token, lists available tools, and provides an interactive prompt to invoke them.
 
